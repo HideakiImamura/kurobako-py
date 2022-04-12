@@ -180,8 +180,8 @@ class OptunaSolver(solver.Solver):
 
         assert current_step <= self._problem.last_step
         if self._problem.last_step == current_step:
-            self._study.tell(trial, values=values)
-            self._study._log_completed_trial(trial, values)
+            frozen_trial = self._study.tell(trial, values=values)
+            self._study._log_completed_trial(frozen_trial)
         else:
             if len(values) > 1:
                 raise NotImplementedError(
